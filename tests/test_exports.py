@@ -74,6 +74,15 @@ def test_export_beyond_window_fails_with_reason(tenant_id):
     assert dl.status_code == 409
 
 
+def test_globaltech_export_window_matches_contract():
+    # ESC-4821: contract LF-ENT-2026-0117 section 2 and Amendment 1 grant 365 days;
+    # the 2026.40 tenant migration left the tenant at 90.
+    headers = login("globaltech")
+    assert client.get("/api/me", headers=headers).json()["export_window_days"] == 365
+    r = client.post("/api/exports", json={"start": "2026-01-01", "end": "2026-10-28"}, headers=headers)
+    assert r.json()["status"] == "complete"
+
+
 def test_export_is_tenant_scoped():
     job = export(login("northstar"), 7)
     r = client.get(f"/api/exports/{job['id']}", headers=login("globaltech"))

@@ -4,7 +4,7 @@
       "id": "globaltech",
       "name": "GlobalTech",
       "plan": "Enterprise",
-      "export_window_days": 90,
+      "export_window_days": 365,
       "modules": ["dashboards", "exports", "alerts", "api"],
       "users": [
         {"email": "ops@globaltech.example", "password": "demo-globaltech", "role": "admin"}
