@@ -16,11 +16,27 @@ Open http://localhost:8000 and sign in with one of the demo accounts.
 
 ## Demo accounts
 
-| Tenant | Email | Password |
-|---|---|---|
-| GlobalTech | ops@globaltech.example | demo-globaltech |
-| Brightmere | finance@brightmere.example | demo-brightmere |
-| Northstar | analytics@northstar.example | demo-northstar |
+One admin account per tenant. The password is always `demo-` followed by the tenant id.
+
+| Tenant | Plan | Email | Password |
+|---|---|---|---|
+| GlobalTech | Enterprise | ops@globaltech.example | demo-globaltech |
+| Brightmere | Starter | finance@brightmere.example | demo-brightmere |
+| Northstar | Growth | analytics@northstar.example | demo-northstar |
+| Halverson Logistics | Growth | ops@halverson.example | demo-halverson |
+| Pinewood Health Partners | Enterprise | data@pinewood.example | demo-pinewood |
+| Verdant Grocers | Starter | office@verdant.example | demo-verdant |
+| Meridian Travel Group | Growth | digital@meridian.example | demo-meridian |
+| Orbital Media Labs | Starter | team@orbital.example | demo-orbital |
+| Castellan Insurance | Enterprise | analytics@castellan.example | demo-castellan |
+| Bluefin Marine Supply | Starter | admin@bluefin.example | demo-bluefin |
+| Ashgrove Education | Growth | platforms@ashgrove.example | demo-ashgrove |
+| Tessellate Studio | Starter | hello@tessellate.example | demo-tessellate |
+| Kestrel Energy | Enterprise | it@kestrel.example | demo-kestrel |
+| Riverbend Credit Union | Growth | digital@riverbend.example | demo-riverbend |
+| Solstice Apparel | Starter | ecom@solstice.example | demo-solstice |
+| Marlowe Finch Publishing | Growth | audience@marlowe.example | demo-marlowe |
+| Quillon Robotics | Enterprise | data@quillon.example | demo-quillon |
 
 ## Test
 

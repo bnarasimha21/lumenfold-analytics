@@ -5,9 +5,18 @@
       "name": "GlobalTech",
       "plan": "Enterprise",
       "export_window_days": 90,
-      "modules": ["dashboards", "exports", "alerts", "api"],
+      "modules": [
+        "dashboards",
+        "exports",
+        "alerts",
+        "api"
+      ],
       "users": [
-        {"email": "ops@globaltech.example", "password": "demo-globaltech", "role": "admin"}
+        {
+          "email": "ops@globaltech.example",
+          "password": "demo-globaltech",
+          "role": "admin"
+        }
       ]
     },
     {
@@ -15,9 +24,16 @@
       "name": "Brightmere",
       "plan": "Starter",
       "export_window_days": 365,
-      "modules": ["dashboards", "exports"],
+      "modules": [
+        "dashboards",
+        "exports"
+      ],
       "users": [
-        {"email": "finance@brightmere.example", "password": "demo-brightmere", "role": "admin"}
+        {
+          "email": "finance@brightmere.example",
+          "password": "demo-brightmere",
+          "role": "admin"
+        }
       ]
     },
     {
@@ -25,9 +41,268 @@
       "name": "Northstar",
       "plan": "Growth",
       "export_window_days": 180,
-      "modules": ["dashboards", "exports", "alerts"],
+      "modules": [
+        "dashboards",
+        "exports",
+        "alerts"
+      ],
       "users": [
-        {"email": "analytics@northstar.example", "password": "demo-northstar", "role": "admin"}
+        {
+          "email": "analytics@northstar.example",
+          "password": "demo-northstar",
+          "role": "admin"
+        }
+      ]
+    },
+    {
+      "id": "halverson",
+      "name": "Halverson Logistics",
+      "plan": "Growth",
+      "export_window_days": 180,
+      "modules": [
+        "dashboards",
+        "exports",
+        "alerts"
+      ],
+      "users": [
+        {
+          "email": "ops@halverson.example",
+          "password": "demo-halverson",
+          "role": "admin"
+        }
+      ]
+    },
+    {
+      "id": "pinewood",
+      "name": "Pinewood Health Partners",
+      "plan": "Enterprise",
+      "export_window_days": 365,
+      "modules": [
+        "dashboards",
+        "exports",
+        "alerts",
+        "api"
+      ],
+      "users": [
+        {
+          "email": "data@pinewood.example",
+          "password": "demo-pinewood",
+          "role": "admin"
+        }
+      ]
+    },
+    {
+      "id": "verdant",
+      "name": "Verdant Grocers",
+      "plan": "Starter",
+      "export_window_days": 90,
+      "modules": [
+        "dashboards",
+        "exports"
+      ],
+      "users": [
+        {
+          "email": "office@verdant.example",
+          "password": "demo-verdant",
+          "role": "admin"
+        }
+      ]
+    },
+    {
+      "id": "meridian",
+      "name": "Meridian Travel Group",
+      "plan": "Growth",
+      "export_window_days": 180,
+      "modules": [
+        "dashboards",
+        "exports",
+        "alerts"
+      ],
+      "users": [
+        {
+          "email": "digital@meridian.example",
+          "password": "demo-meridian",
+          "role": "admin"
+        }
+      ]
+    },
+    {
+      "id": "orbital",
+      "name": "Orbital Media Labs",
+      "plan": "Starter",
+      "export_window_days": 90,
+      "modules": [
+        "dashboards",
+        "exports"
+      ],
+      "users": [
+        {
+          "email": "team@orbital.example",
+          "password": "demo-orbital",
+          "role": "admin"
+        }
+      ]
+    },
+    {
+      "id": "castellan",
+      "name": "Castellan Insurance",
+      "plan": "Enterprise",
+      "export_window_days": 365,
+      "modules": [
+        "dashboards",
+        "exports",
+        "alerts",
+        "api"
+      ],
+      "users": [
+        {
+          "email": "analytics@castellan.example",
+          "password": "demo-castellan",
+          "role": "admin"
+        }
+      ]
+    },
+    {
+      "id": "bluefin",
+      "name": "Bluefin Marine Supply",
+      "plan": "Starter",
+      "export_window_days": 90,
+      "modules": [
+        "dashboards",
+        "exports"
+      ],
+      "users": [
+        {
+          "email": "admin@bluefin.example",
+          "password": "demo-bluefin",
+          "role": "admin"
+        }
+      ]
+    },
+    {
+      "id": "ashgrove",
+      "name": "Ashgrove Education",
+      "plan": "Growth",
+      "export_window_days": 180,
+      "modules": [
+        "dashboards",
+        "exports",
+        "alerts"
+      ],
+      "users": [
+        {
+          "email": "platforms@ashgrove.example",
+          "password": "demo-ashgrove",
+          "role": "admin"
+        }
+      ]
+    },
+    {
+      "id": "tessellate",
+      "name": "Tessellate Studio",
+      "plan": "Starter",
+      "export_window_days": 90,
+      "modules": [
+        "dashboards",
+        "exports"
+      ],
+      "users": [
+        {
+          "email": "hello@tessellate.example",
+          "password": "demo-tessellate",
+          "role": "admin"
+        }
+      ]
+    },
+    {
+      "id": "kestrel",
+      "name": "Kestrel Energy",
+      "plan": "Enterprise",
+      "export_window_days": 365,
+      "modules": [
+        "dashboards",
+        "exports",
+        "alerts",
+        "api"
+      ],
+      "users": [
+        {
+          "email": "it@kestrel.example",
+          "password": "demo-kestrel",
+          "role": "admin"
+        }
+      ]
+    },
+    {
+      "id": "riverbend",
+      "name": "Riverbend Credit Union",
+      "plan": "Growth",
+      "export_window_days": 180,
+      "modules": [
+        "dashboards",
+        "exports",
+        "alerts"
+      ],
+      "users": [
+        {
+          "email": "digital@riverbend.example",
+          "password": "demo-riverbend",
+          "role": "admin"
+        }
+      ]
+    },
+    {
+      "id": "solstice",
+      "name": "Solstice Apparel",
+      "plan": "Starter",
+      "export_window_days": 90,
+      "modules": [
+        "dashboards",
+        "exports"
+      ],
+      "users": [
+        {
+          "email": "ecom@solstice.example",
+          "password": "demo-solstice",
+          "role": "admin"
+        }
+      ]
+    },
+    {
+      "id": "marlowe",
+      "name": "Marlowe Finch Publishing",
+      "plan": "Growth",
+      "export_window_days": 180,
+      "modules": [
+        "dashboards",
+        "exports",
+        "alerts"
+      ],
+      "users": [
+        {
+          "email": "audience@marlowe.example",
+          "password": "demo-marlowe",
+          "role": "admin"
+        }
+      ]
+    },
+    {
+      "id": "quillon",
+      "name": "Quillon Robotics",
+      "plan": "Enterprise",
+      "export_window_days": 365,
+      "modules": [
+        "dashboards",
+        "exports",
+        "alerts",
+        "api"
+      ],
+      "users": [
+        {
+          "email": "data@quillon.example",
+          "password": "demo-quillon",
+          "role": "admin"
+        }
       ]
     }
   ]

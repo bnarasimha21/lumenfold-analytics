@@ -5,6 +5,14 @@ from datetime import date, timedelta
 HISTORY_DAYS = 400
 TODAY = date(2026, 10, 30)  # fixed so the demo is repeatable
 
+# Weekday sessions baseline per tenant. Unknown tenants get 5000.
+TRAFFIC_BASE = {
+    "globaltech": 48000, "brightmere": 3200, "northstar": 12500, "halverson": 9800,
+    "pinewood": 31000, "verdant": 1400, "meridian": 15600, "orbital": 2700,
+    "castellan": 22000, "bluefin": 1900, "ashgrove": 8400, "tessellate": 900,
+    "kestrel": 18500, "riverbend": 7200, "solstice": 4100, "marlowe": 6300, "quillon": 11800,
+}
+
 
 def _seed(tenant_id: str, day: date) -> int:
     h = hashlib.sha256(f"{tenant_id}:{day.isoformat()}".encode()).digest()
@@ -14,7 +22,7 @@ def _seed(tenant_id: str, day: date) -> int:
 def daily_metrics(tenant_id: str, start: date, end: date) -> list[dict]:
     """Rows for each day in [start, end], inclusive. Oldest first."""
     rows = []
-    base = {"globaltech": 48000, "brightmere": 3200, "northstar": 12500}.get(tenant_id, 5000)
+    base = TRAFFIC_BASE.get(tenant_id, 5000)
     day = start
     while day <= end:
         s = _seed(tenant_id, day)
