@@ -1,0 +1,34 @@
+{
+  "tenants": [
+    {
+      "id": "globaltech",
+      "name": "GlobalTech",
+      "plan": "Enterprise",
+      "export_window_days": 90,
+      "modules": ["dashboards", "exports", "alerts", "api"],
+      "users": [
+        {"email": "ops@globaltech.example", "password": "demo-globaltech", "role": "admin"}
+      ]
+    },
+    {
+      "id": "brightmere",
+      "name": "Brightmere",
+      "plan": "Starter",
+      "export_window_days": 365,
+      "modules": ["dashboards", "exports"],
+      "users": [
+        {"email": "finance@brightmere.example", "password": "demo-brightmere", "role": "admin"}
+      ]
+    },
+    {
+      "id": "northstar",
+      "name": "Northstar",
+      "plan": "Growth",
+      "export_window_days": 180,
+      "modules": ["dashboards", "exports", "alerts"],
+      "users": [
+        {"email": "analytics@northstar.example", "password": "demo-northstar", "role": "admin"}
+      ]
+    }
+  ]
+}
