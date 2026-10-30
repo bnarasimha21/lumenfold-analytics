@@ -61,11 +61,15 @@ def test_export_within_window_completes(tenant_id):
 
 
 @pytest.mark.parametrize("tenant_id", ACCOUNTS)
-def test_export_beyond_window_does_not_complete(tenant_id):
+def test_export_beyond_window_fails_with_reason(tenant_id):
+    # ESC-4821: over-window jobs used to stay "queued" forever (spec 4.3, 4.4).
     headers = login(tenant_id)
     window = client.get("/api/me", headers=headers).json()["export_window_days"]
     job = export(headers, window + 1)
-    assert job["status"] != "complete"
+    assert job["status"] == "failed"
+    assert job["error"] == f"Date range exceeds the export window for your plan ({window} days)"
+    status = client.get(f"/api/exports/{job['id']}", headers=headers).json()
+    assert status["status"] == "failed"
     dl = client.get(f"/api/exports/{job['id']}/download", headers=headers)
     assert dl.status_code == 409
 

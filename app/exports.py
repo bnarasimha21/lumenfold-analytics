@@ -2,7 +2,8 @@
 
 An export request is accepted immediately and processed by a worker step.
 Jobs within the tenant's export window complete and produce a CSV. Jobs
-outside the window are skipped by the worker.
+outside the window fail with a message the dashboard shows to the user
+(Product Specification 4.3).
 """
 import csv
 import io
@@ -45,12 +46,13 @@ def process(job_id: str) -> None:
     job = JOBS[job_id]
     window = entitlements.export_window_days(job["tenant_id"])
     if job["days"] > window:
-        # Range is outside the tenant's entitlement. The worker leaves the
-        # job for a later retry instead of failing it.
-        log.debug(
-            "export %s skipped: range of %d days exceeds entitlement window of %d days for tenant=%s",
-            job_id, job["days"], window, job["tenant_id"],
-        )
+        # Range is outside the tenant's entitlement. A retry cannot succeed,
+        # so fail the job now rather than leaving it queued (spec 4.3, 4.4).
+        job["status"] = "failed"
+        job["error"] = f"Date range exceeds the export window for your plan ({window} days)"
+        job["updated_at"] = _now()
+        log.info("export %s failed: range of %d days exceeds export window of %d days for tenant=%s",
+                 job_id, job["days"], window, job["tenant_id"])
         return
     job["status"] = "running"
     job["updated_at"] = _now()
