@@ -1,4 +1,4 @@
-from datetime import timedelta
+from datetime import date, timedelta
 
 import pytest
 from fastapi.testclient import TestClient
@@ -68,6 +68,31 @@ def test_export_beyond_window_does_not_complete(tenant_id):
     assert job["status"] != "complete"
     dl = client.get(f"/api/exports/{job['id']}/download", headers=headers)
     assert dl.status_code == 409
+
+
+@pytest.mark.parametrize("tenant_id", ACCOUNTS)
+def test_export_beyond_window_fails_with_message(tenant_id):
+    # ESC-4821: over-window jobs were left queued forever and the dashboard
+    # spun indefinitely. Spec 4.3 requires failed with a clear message.
+    headers = login(tenant_id)
+    window = client.get("/api/me", headers=headers).json()["export_window_days"]
+    job = export(headers, window + 1)
+    assert job["status"] == "failed"
+    assert job["error"] == f"Date range exceeds the export window for your plan ({window} days)"
+    r = client.get(f"/api/exports/{job['id']}", headers=headers)
+    assert r.json()["status"] == "failed"
+
+
+def test_globaltech_has_enterprise_export_window():
+    # ESC-4821: contract LF-ENT-2026-0117 section 2 and Amendment 1 grant 365 days.
+    headers = login("globaltech")
+    assert client.get("/api/me", headers=headers).json()["export_window_days"] == 365
+    start = date(2026, 1, 1)
+    end = date(2026, 10, 23)
+    r = client.post("/api/exports", json={"start": start.isoformat(), "end": end.isoformat()}, headers=headers)
+    assert r.json()["status"] == "complete"
+    dl = client.get(f"/api/exports/{r.json()['id']}/download", headers=headers)
+    assert dl.text.count("\n") == (end - start).days + 2
 
 
 def test_export_is_tenant_scoped():
