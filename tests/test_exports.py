@@ -81,3 +81,24 @@ def test_export_rejects_dates_before_retention():
     start = data.earliest_available() - timedelta(days=1)
     r = client.post("/api/exports", json={"start": start.isoformat(), "end": data.TODAY.isoformat()}, headers=headers)
     assert r.status_code == 400
+
+
+@pytest.mark.parametrize("tenant_id", ACCOUNTS)
+def test_export_beyond_window_fails_with_reason(tenant_id):
+    # ESC-4821: over-window jobs stayed queued forever instead of failing (Product Specification 4.3, 4.4).
+    headers = login(tenant_id)
+    window = client.get("/api/me", headers=headers).json()["export_window_days"]
+    job = export(headers, window + 1)
+    status = client.get(f"/api/exports/{job['id']}", headers=headers).json()
+    assert status["status"] == "failed"
+    assert status["error"] == f"Date range exceeds the export window for your plan ({window} days)."
+
+
+def test_globaltech_export_window_matches_contract():
+    # ESC-4821: GlobalTech is Enterprise with a 365-day window (contract LF-ENT-2026-0117 section 2, Amendment 1).
+    headers = login("globaltech")
+    assert client.get("/api/me", headers=headers).json()["export_window_days"] == 365
+    end = data.TODAY
+    r = client.post("/api/exports", json={"start": "2026-01-01", "end": end.isoformat()}, headers=headers)
+    assert r.status_code == 202
+    assert r.json()["status"] == "complete"
